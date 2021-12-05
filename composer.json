@@ -1,0 +1,24 @@
+{
+    "name": "delta4op/laravel-mongodb-odm",
+    "description": "A lightweight Laravel wrapper around Doctrine's mongodb-odm Document Mapper",
+    "homepage": "https://github.com/delta4op/laravel-mongodb-odm",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Delta4op\\MongoODM\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ravish",
+            "email": "gitwithravish@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "doctrine/mongodb-odm": "2.3.x-dev",
+        "laravel/framework": "7.x",
+        "ext-mongodb": "*"
+    }
+}
