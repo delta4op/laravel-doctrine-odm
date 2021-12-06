@@ -26,7 +26,11 @@ class DocumentManagerServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot() {}
+    public function boot() {
+        $this->publishes([
+            __DIR__.'/../config/mongo-odm.php' => config_path('mongo-odm.php'),
+        ]);
+    }
 
     /**
      * Register the application services.
