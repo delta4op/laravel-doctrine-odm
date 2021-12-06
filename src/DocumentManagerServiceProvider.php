@@ -5,6 +5,7 @@ namespace Delta4op\MongoODM;
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
+use Doctrine\ODM\MongoDB\MongoDBException;
 use Doctrine\ODM\MongoDB\Types\Type;
 use Illuminate\Support\ServiceProvider;
 use MongoDB\Client;
@@ -35,28 +36,9 @@ class DocumentManagerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('DocumentManager', function ($app){
-
-            $config = config('mongodb-odm.doctrine_dm');
-            $connectionConfig = config('database.connections.'. config('mongodb-odm.connection'));
-
-            // Set up the Doctrine configuration object
-            $configuration = new Configuration();
-            $configuration->setProxyDir($config['proxies']['path']);
-            $configuration->setProxyNamespace($config['proxies']['namespace']);
-            $configuration->setHydratorDir($config['hydrators']['path']);
-            $configuration->setHydratorNamespace($config['hydrators']['namespace']);
-            $configuration->setMetadataDriverImpl(AnnotationDriver::create($config['paths']));
-            $configuration->setDefaultDB($connectionConfig['database']);
-            $configuration->setDefaultDocumentRepositoryClassName(DocumentRepository::class);
-            $configuration->setDefaultCommitOptions([]);
-
-            $client = new Client($connectionConfig['dsn'],[],[
-                'typeMap' => DocumentManager::CLIENT_TYPEMAP
-            ]);
-
             return DocumentManager::create(
-                $client,
-                $configuration
+                $this->getClient(),
+                $this->getConfiguration()
             );
         });
 
@@ -64,11 +46,51 @@ class DocumentManagerServiceProvider extends ServiceProvider
     }
 
     /**
+     * Returns default configuration
+     *
+     * @return Configuration
+     * @throws MongoDBException
+     */
+    private function getConfiguration(): Configuration
+    {
+        $dbConfig = config('database.connections.'. config('mongodb-odm.connection'));
+        $config = config('mongo-odm');
+        $configuration = new Configuration();
+        $configuration->setProxyDir($config['proxies']['path']);
+        $configuration->setProxyNamespace($config['proxies']['namespace']);
+        $configuration->setHydratorDir($config['hydrators']['path']);
+        $configuration->setHydratorNamespace($config['hydrators']['namespace']);
+        $configuration->setMetadataDriverImpl(AnnotationDriver::create($config['paths']));
+        $configuration->setDefaultDB($dbConfig['database']);
+        $configuration->setDefaultDocumentRepositoryClassName($config['default-document-repository']);
+        $configuration->setDefaultCommitOptions([]);
+
+        return $configuration;
+    }
+
+
+    /**
+     * Creates and returns generic client
+     *
+     * @return Client
+     */
+    protected function getClient(): Client
+    {
+        $dbConfig = config('database.connections.'. config('mongodb-odm.connection'));
+
+        return new Client(
+            $dbConfig['dsn'],
+            [],
+            ['typeMap' => DocumentManager::CLIENT_TYPEMAP]
+        );
+    }
+
+    /**
      * Registers custom type casting
      *
      * @return void
      */
-    public function registerCustomTypes()
+    protected function registerCustomTypes()
     {
         Type::registerType('carbon', CarbonDate::class);
 
