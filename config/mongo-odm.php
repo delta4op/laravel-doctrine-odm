@@ -17,7 +17,7 @@ return [
     |
     |
     */
-    'default_document_repository' => \Doctrine\ODM\MongoDB\Repository\DocumentRepository::class,
+    'default_document_repository' => \Delta4op\MongoODM\DocumentRepositories\DocumentRepository::class,
 
     // List of array that contains document files
     'paths' => [
