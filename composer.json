@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "require": {
         "doctrine/mongodb-odm": "2.3.x-dev",
-        "laravel/framework": "7.x",
+        "laravel/framework": "8.*",
         "ext-mongodb": "*"
     }
 }
