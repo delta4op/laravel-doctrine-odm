@@ -21,7 +21,7 @@ class DocumentManager extends BaseDocumentManager
      *
      * @param array $options
      */
-    public function startTransaction($options = [])
+    public function startTransaction(array $options = [])
     {
         $this->startSession();
 

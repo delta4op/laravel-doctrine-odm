@@ -86,11 +86,5 @@ abstract class Document implements Arrayable
         return DocumentManager::createQueryBuilder(get_called_class());
     }
 
-    /**
-     * @return DocumentRepository
-     */
-    public static function repository(): DocumentRepository
-    {
-        return DocumentManager::getRepository(get_called_class());
-    }
+    abstract public static function repository(): DocumentRepository;
 }
