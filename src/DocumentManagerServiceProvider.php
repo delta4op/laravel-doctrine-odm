@@ -57,7 +57,7 @@ class DocumentManagerServiceProvider extends ServiceProvider
      */
     private function getConfiguration(): Configuration
     {
-        $dbConfig = config('database.connections.'. config('mongodb-odm.connection'));
+        $dbConfig = config('database.connections.'. config('mongo-odm.connection'));
         $config = config('mongo-odm');
         $configuration = new Configuration();
         $configuration->setProxyDir($config['proxies']['path']);
@@ -80,7 +80,7 @@ class DocumentManagerServiceProvider extends ServiceProvider
      */
     protected function getClient(): Client
     {
-        $dbConfig = config('database.connections.'. config('mongodb-odm.connection'));
+        $dbConfig = config('database.connections.'. config('mongo-odm.connection'));
 
         return new Client(
             $dbConfig['dsn'],
