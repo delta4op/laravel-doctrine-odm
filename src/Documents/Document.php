@@ -2,12 +2,12 @@
 
 namespace Delta4op\MongoODM\Documents;
 
+use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
 use Delta4op\MongoODM\Facades\DocumentManager;
+use Delta4op\MongoODM\Traits\CanFillClassProperties;
 use Doctrine\ODM\MongoDB\Query\Builder;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Str;
-use SYSOTEL\SYSAPP\DB\MongoDB\DocumentRepositories\DocumentRepository;
-use SYSOTEL\SYSAPP\DB\MongoDB\Traits\CanFillClassProperties;
 
 abstract class Document implements Arrayable
 {

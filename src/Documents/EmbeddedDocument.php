@@ -2,8 +2,8 @@
 
 namespace Delta4op\MongoODM\Documents;
 
+use Delta4op\MongoODM\Traits\CanFillClassProperties;
 use Illuminate\Contracts\Support\Arrayable;
-use SYSOTEL\SYSAPP\DB\MongoDB\Traits\CanFillClassProperties;
 
 abstract class EmbeddedDocument implements Arrayable
 {
