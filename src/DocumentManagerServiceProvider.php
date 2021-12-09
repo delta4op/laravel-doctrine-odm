@@ -66,7 +66,7 @@ class DocumentManagerServiceProvider extends ServiceProvider
         $configuration->setHydratorNamespace($config['hydrators']['namespace']);
         $configuration->setMetadataDriverImpl(AnnotationDriver::create($config['paths']));
         $configuration->setDefaultDB($dbConfig['database']);
-        $configuration->setDefaultDocumentRepositoryClassName($config['default-document-repository']);
+        $configuration->setDefaultDocumentRepositoryClassName($config['default_document_repository']);
         $configuration->setDefaultCommitOptions([]);
 
         return $configuration;
