@@ -9,7 +9,7 @@ trait CanFillClassProperties
         foreach($attributes as $key => $value) {
 
             if(! property_exists($this, $key)){
-                abort(500, "Property $key does not exists");
+                throw new \Exception("Property $key does not exist");
             }
 
             $this->{$key} = $value;
