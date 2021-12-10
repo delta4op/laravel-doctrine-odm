@@ -20,6 +20,9 @@ trait CanFillClassProperties
 
     public function __get($name)
     {
-        return $this->{$name} ?? null;
+        if(isset($this->{$name})) {
+            return $this->{$name};
+        }
+        return null;
     }
 }
