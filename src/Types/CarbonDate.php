@@ -2,6 +2,7 @@
 
 namespace Delta4op\MongoODM\Types;
 
+use Carbon\Carbon;
 use DateTime;
 use Doctrine\ODM\MongoDB\Types\ClosureToPHP;
 use Doctrine\ODM\MongoDB\Types\Type;
@@ -24,7 +25,7 @@ class CarbonDate extends Type
         }
 
         if ($value instanceof UTCDateTime){
-            return Date::createFromTimestampMs($value->toDateTime()->format('Uv'));
+            return new Carbon($value->toDateTime());
         }
 
         return $value;
