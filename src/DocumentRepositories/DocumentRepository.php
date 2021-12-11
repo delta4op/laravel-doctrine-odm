@@ -12,12 +12,15 @@ class DocumentRepository extends BaseDocumentRepository
      * Similar to findBy method.
      * Difference is it returns collection instead of array
      *
-     * @param array $filters
+     * @param array $criteria
+     * @param array|null $orderBy
+     * @param null $limit
+     * @param null $offset
      * @return Collection
      */
-    public function getCollectionBy(array $filters = []): Collection
+    public function getCollectionBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null): Collection
     {
-        return collect($this->findBy($filters));
+        return collect($this->findBy($criteria,$orderBy,$limit,$offset));
     }
 
     /**
