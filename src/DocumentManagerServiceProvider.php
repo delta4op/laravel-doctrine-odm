@@ -2,8 +2,8 @@
 
 namespace Delta4op\MongoODM;
 
+use Delta4op\MongoODM\DocumentManagers\DocumentManager;
 use Doctrine\ODM\MongoDB\Configuration;
-use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Doctrine\ODM\MongoDB\Types\Type;
