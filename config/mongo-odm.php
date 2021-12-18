@@ -23,6 +23,10 @@ return [
     'paths' => [
         base_path('app/Services/ODM/Documents')
     ],
+    
+    'metadata' => [
+        base_path('app/Services/ODM/Metadata')
+    ],
 
     // Warning: Proxy auto generation should only be enabled in dev!
     'proxies' => [

@@ -67,6 +67,7 @@ class DocumentManagerServiceProvider extends ServiceProvider
         $configuration->setMetadataDriverImpl(AnnotationDriver::create($config['paths']));
         $configuration->setDefaultDB($dbConfig['database']);
         $configuration->setDefaultDocumentRepositoryClassName($config['default_document_repository']);
+        $config->setMetadataDriverImpl(new XmlDriver($config['metadata']));
         $configuration->setDefaultCommitOptions([]);
 
         return $configuration;
