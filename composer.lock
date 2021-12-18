@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ecd77cb9312929c23c94b5c7ec71325",
+    "content-hash": "fc65802d74b410ee0614240b5525167d",
     "packages": [
         {
             "name": "brick/math",
@@ -760,16 +760,16 @@
         },
         {
             "name": "doctrine/mongodb-odm",
-            "version": "2.3.0",
+            "version": "2.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb-odm.git",
-                "reference": "9cb4d517f8d2b96071b6f38791c90614acf66f5b"
+                "reference": "a520aaec89e7c12537f7bc56942976f35feaa4d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/9cb4d517f8d2b96071b6f38791c90614acf66f5b",
-                "reference": "9cb4d517f8d2b96071b6f38791c90614acf66f5b",
+                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/a520aaec89e7c12537f7bc56942976f35feaa4d4",
+                "reference": "a520aaec89e7c12537f7bc56942976f35feaa4d4",
                 "shasum": ""
             },
             "require": {
@@ -804,6 +804,7 @@
             "suggest": {
                 "ext-bcmath": "Decimal128 type support"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -853,7 +854,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/mongodb-odm/issues",
-                "source": "https://github.com/doctrine/mongodb-odm/tree/2.3.0"
+                "source": "https://github.com/doctrine/mongodb-odm/tree/2.3.x"
             },
             "funding": [
                 {
@@ -869,7 +870,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-30T14:38:25+00:00"
+            "time": "2021-12-01T00:13:51+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -8648,10 +8649,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": [],
-    "prefer-stable": true,
+    "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "8.0.*",
         "ext-mongodb": "*"
     },
     "platform-dev": [],
