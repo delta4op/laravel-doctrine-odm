@@ -60,14 +60,14 @@ class DocumentManager extends BaseDocumentManager
      *
      * @param array $options
      */
-    public function startSession($options = [])
+    public function startSession(array $options = [])
     {
-        if (!$this->session instanceof Session) {
+        if (! isset($this->session)) {
             $options = [
                     'readPreference' => new ReadPreference(ReadPreference::RP_PRIMARY),
                 ] + $options;
 
-            $this->session = $this->phpClient->startSession($options);
+            $this->session = $this->getClient()->startSession($options);
         } else {
             throw new RuntimeException('Session already started.');
         }
