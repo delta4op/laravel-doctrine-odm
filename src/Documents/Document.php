@@ -8,10 +8,11 @@ use Delta4op\MongoODM\Traits\CanFillClassProperties;
 use Doctrine\ODM\MongoDB\Query\Builder;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Macroable;
 
 abstract class Document implements Arrayable
 {
-    use CanFillClassProperties;
+    use CanFillClassProperties, Macroable;
 
     /**
      * Collection name
