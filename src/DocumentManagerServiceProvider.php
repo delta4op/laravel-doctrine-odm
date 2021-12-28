@@ -48,13 +48,6 @@ class DocumentManagerServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->singleton('TransactionalDocumentManager', function ($app){
-            return TransactionalDocumentManager::create(
-                $this->getClient(),
-                $this->getConfiguration()
-            );
-        });
-
         $this->registerCustomTypes();
     }
 
