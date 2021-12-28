@@ -3,6 +3,7 @@
 namespace Delta4op\MongoODM;
 
 use Delta4op\MongoODM\DocumentManagers\DocumentManager;
+use Delta4op\MongoODM\DocumentManagers\TransactionalDocumentManager;
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
 use Doctrine\ODM\MongoDB\Mapping\Driver\XmlDriver;
@@ -42,6 +43,13 @@ class DocumentManagerServiceProvider extends ServiceProvider
     {
         $this->app->singleton('DocumentManager', function ($app){
             return DocumentManager::create(
+                $this->getClient(),
+                $this->getConfiguration()
+            );
+        });
+
+        $this->app->singleton('TransactionalDocumentManager', function ($app){
+            return TransactionalDocumentManager::create(
                 $this->getClient(),
                 $this->getConfiguration()
             );
