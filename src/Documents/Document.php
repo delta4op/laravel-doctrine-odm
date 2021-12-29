@@ -12,7 +12,7 @@ use Illuminate\Support\Traits\Macroable;
 
 abstract class Document implements Arrayable
 {
-    use CanFillClassProperties, Macroable;
+    use CanFillClassProperties;
 
     /**
      * Collection name
