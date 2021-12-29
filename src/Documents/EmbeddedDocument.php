@@ -8,7 +8,7 @@ use Illuminate\Support\Traits\Macroable;
 
 abstract class EmbeddedDocument implements Arrayable
 {
-    use CanFillClassProperties, Macroable;
+    use CanFillClassProperties;
 
     public function __construct(array $attributes = [])
     {
