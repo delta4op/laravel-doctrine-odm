@@ -3,6 +3,7 @@
 namespace Delta4op\MongoODM\DocumentManagers;
 
 use \Doctrine\ODM\MongoDB\DocumentManager as BaseDocumentManager;
+use Illuminate\Support\Arr;
 use MongoDB\Driver\ReadConcern;
 use MongoDB\Driver\ReadPreference;
 use MongoDB\Driver\Session;
@@ -93,6 +94,16 @@ class DocumentManager extends BaseDocumentManager
             $this->session->endSession();
         } else {
             throw new RuntimeException('Session not found.');
+        }
+    }
+
+    /**
+     * @param object|object[] $objects
+     */
+    public function persistMultiple(object|array $objects)
+    {
+        foreach(Arr::wrap($objects) as $object) {
+            $this->persist($object);
         }
     }
 }
