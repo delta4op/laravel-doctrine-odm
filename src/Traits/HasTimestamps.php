@@ -24,8 +24,8 @@ trait HasTimestamps
      */
     public function markCreatedAtTimestamp()
     {
-        if(!isset($this->{$this->updatedAtFieldName()})){
-            $this->{$this->updatedAtFieldName()} = now();
+        if(!isset($this->{$this->createdAtFieldName()})){
+            $this->{$this->createdAtFieldName()} = now();
         }
     }
 
@@ -34,8 +34,8 @@ trait HasTimestamps
      */
     public function markUpdatedAtTimestamp()
     {
-        if(!isset($this->{$this->createdAtFieldName()})){
-            $this->{$this->createdAtFieldName()} = now();
+        if(!isset($this->{$this->updatedAtFieldName()})){
+            $this->{$this->updatedAtFieldName()} = now();
         }
     }
 
