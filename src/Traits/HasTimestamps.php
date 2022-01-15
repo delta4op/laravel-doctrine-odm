@@ -60,7 +60,7 @@ trait HasTimestamps
      */
     public function createdAtFieldName(): string
     {
-        return 'created_at';
+        return 'createdAt';
     }
 
     /**
@@ -68,6 +68,6 @@ trait HasTimestamps
      */
     public function updatedAtFieldName(): string
     {
-        return 'updated_at';
+        return 'updatedAt';
     }
 }
