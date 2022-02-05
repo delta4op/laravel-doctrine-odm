@@ -4,14 +4,13 @@ namespace Delta4op\MongoODM\Documents;
 
 use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
 use Delta4op\MongoODM\Facades\DocumentManager;
-use Delta4op\MongoODM\Traits\CanFillClassProperties;
 use Doctrine\ODM\MongoDB\Query\Builder;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Str;
 
 abstract class Document implements Arrayable
 {
-    use CanFillClassProperties;
+    use Common;
 
     /**
      * Collection name
@@ -32,11 +31,6 @@ abstract class Document implements Arrayable
      * @var string
      */
     protected string $keyType = 'string';
-
-    public function __construct(array $attributes = [])
-    {
-        $this->fill($attributes);
-    }
 
     /**
      * Returns name of the collection the document belongs to
