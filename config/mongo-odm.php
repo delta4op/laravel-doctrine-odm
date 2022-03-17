@@ -5,6 +5,7 @@ return [
 
     // !! The name of the connection Doctrine should use (from database.php)
     'connection' => 'mongodb',
+    'connectionTransactional' => 'mongodbTransactional',
 
     /*
     |--------------------------------------------------------------------------

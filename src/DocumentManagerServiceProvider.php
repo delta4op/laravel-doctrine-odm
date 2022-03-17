@@ -6,13 +6,11 @@ use Delta4op\MongoODM\DocumentManagers\DocumentManager;
 use Delta4op\MongoODM\DocumentManagers\TransactionalDocumentManager;
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver;
-use Doctrine\ODM\MongoDB\Mapping\Driver\XmlDriver;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Doctrine\ODM\MongoDB\Types\Type;
 use Illuminate\Support\ServiceProvider;
 use MongoDB\Client;
 use Delta4op\MongoODM\Types\CarbonDate;
-use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
 
 class DocumentManagerServiceProvider extends ServiceProvider
 {
@@ -41,14 +39,29 @@ class DocumentManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('DocumentManager', function ($app){
+        $this->registerDefaultDM();
+        $this->registerTransactionalDM();
+        $this->registerCustomTypes();
+    }
+
+    public function registerDefaultDM()
+    {
+        $this->app->singleton('DocumentManager', function (){
             return DocumentManager::create(
-                $this->getClient(),
+                $this->getDefaultClient(),
                 $this->getConfiguration()
             );
         });
+    }
 
-        $this->registerCustomTypes();
+    public function registerTransactionalDM()
+    {
+        $this->app->singleton('TransactionalDocumentManager', function (){
+            return TransactionalDocumentManager::create(
+                $this->getTransactionalClient(),
+                $this->getConfiguration()
+            );
+        });
     }
 
     /**
@@ -81,9 +94,25 @@ class DocumentManagerServiceProvider extends ServiceProvider
      *
      * @return Client
      */
-    protected function getClient(): Client
+    protected function getDefaultClient(): Client
     {
         $dbConfig = config('database.connections.'. config('mongo-odm.connection'));
+
+        return new Client(
+            $dbConfig['dsn'],
+            [],
+            ['typeMap' => DocumentManager::CLIENT_TYPEMAP]
+        );
+    }
+
+    /**
+     * Creates and returns generic client
+     *
+     * @return Client
+     */
+    protected function getTransactionalClient(): Client
+    {
+        $dbConfig = config('database.connections.'. config('mongo-odm.connectionTransactional'));
 
         return new Client(
             $dbConfig['dsn'],
