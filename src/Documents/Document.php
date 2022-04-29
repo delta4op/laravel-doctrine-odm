@@ -81,4 +81,9 @@ abstract class Document implements Arrayable
     }
 
     abstract public static function repository(): DocumentRepository;
+
+    public function toArray(): array
+    {
+        return [];
+    }
 }
