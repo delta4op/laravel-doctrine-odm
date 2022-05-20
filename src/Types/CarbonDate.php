@@ -3,10 +3,8 @@
 namespace Delta4op\MongoODM\Types;
 
 use Carbon\Carbon;
-use DateTime;
 use Doctrine\ODM\MongoDB\Types\ClosureToPHP;
 use Doctrine\ODM\MongoDB\Types\Type;
-use Illuminate\Support\Facades\Date;
 use MongoDB\BSON\UTCDateTime;
 
 class CarbonDate extends Type
@@ -25,7 +23,7 @@ class CarbonDate extends Type
         }
 
         if ($value instanceof UTCDateTime){
-            return new Carbon($value->toDateTime());
+            return (new Carbon($value->toDateTime()))->timezone('Asia/Kolkata');
         }
 
         return $value;
