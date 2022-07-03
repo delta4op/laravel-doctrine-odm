@@ -6,7 +6,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Delta4op\\MongoODM\\": "src/"
+            "Delta4op\\MongoODM\\": "src/",
+            "Delta4op\\MongoODM\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -16,13 +17,12 @@
         }
     ],
     "require": {
-        "doctrine/mongodb-odm": "2.3.*",
-        "illuminate/support": "^6|^7|^8|^9",
+        "doctrine/mongodb-odm": "2.4.*",
         "ext-mongodb": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^6|^7|^8|^9",
-        "orchestra/testbench": "6.*"
+        "orchestra/testbench": "7.*"
     },
     "extra": {
         "laravel": {
